@@ -37,13 +37,15 @@ const NotFoundQuery = graphql(
 );
 
 export default async function NotFound() {
+  console.debug(`Not found: ${new Date().toLocaleTimeString()}`);
+
   const locale = await getLocale();
   const t = await getTranslations('NotFound');
   const messages = await getMessages({ locale });
 
   const { data } = await client.fetch({
     document: NotFoundQuery,
-    fetchOptions: { next: { revalidate } },
+    fetchOptions: { next: {} },
   });
 
   const featuredProducts = removeEdgesAndNodes(data.site.featuredProducts).map(
@@ -99,3 +101,4 @@ export default async function NotFound() {
 }
 
 export const runtime = 'edge';
+export const dynamic = 'force dynamic';
