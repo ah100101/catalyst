@@ -89,7 +89,7 @@ export default function RootLayout({ children, params: { locale } }: Props) {
 
   return (
     <html className={`${inter.variable} font-sans`} lang={locale}>
-      <body className="flex h-screen min-w-[375px] flex-col">
+      <body className="flex h-screen min-w-[375px] flex-col bg-gray-300">
         <Notifications />
         <NextIntlClientProvider locale={locale} messages={messages}>
           <Providers>{children}</Providers>
